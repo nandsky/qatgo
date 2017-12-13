@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+//option java_multiple_files = true;
+//option java_package = "io.grpc.examples.helloworld";
+//option java_outer_classname = "JobServerProto";
+
+package jobserver;
+
+// The greeting service definition.
+service JobServer {
+  // Sends a greeting
+  rpc SayHello (JobRequest) returns (JobReply) {}
+}
+
+// The request message containing the user's name.
+message JobRequest {
+  int32 opType = 1;
+  string sni = 2;
+  bytes payload = 3;
+
+}
+
+// The response message containing the greetings
+message JobReply {
+  int32 status = 1;
+  string msg = 2;
+}
+
+// The request message containing the user's name.
+message RsaRequest {
+    int32 opType = 1;
+    string sni = 2;
+    bytes payload = 3;
+
+}
+
+// The response message containing the greetings
+message RsaReply {
+    int32 status = 1;
+    string msg = 2;
+}
+
+message EcdsaSignRequest {
+  int32 opType = 1;
+  string sni = 2;
+  bytes digest = 3;
+}
+
+message EcdsaSignReply {
+  int32 status = 1;
+  string msg = 2;
+  bytes r = 3;
+  bytes s = 4;
+}
+
+message EcdsaVerifyRequest {
+  int32 opType = 1;
+  string sni = 2;
+  bytes digest = 3;
+  bytes r = 4;
+  bytes s = 5;
+}
+
+message EcdsaVerifyReply {
+  int32 status = 1;
+  string msg = 2;
+  bool verify = 3;
+}
